@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sampurna Ghosh CV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      line-height: 1.4;
+      color: #000;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1, h2, h3 { color: #111; margin-top: 15px; margin-bottom: 5px; }
+    h1 { font-size: 18px; text-transform: uppercase; letter-spacing: 1px; }
+    h2 { font-size: 13px; border-bottom: 1px solid #ccc; padding-bottom: 2px; text-transform: uppercase; color: #492ced; }
+    h3 { font-size: 11px; font-weight: 700; }
+    p, ul, li { margin: 4px 0; }
+    ul { padding-left: 20px; }
+    a { color: #492ced; text-decoration: none; }
+    hr { display: none; }
+    
+    @media print {
+      @page { margin: 0.5in; }
+      body { padding: 0; }
+      h2 { page-break-after: avoid; }
+      p, li { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div id="cv-content">Loading CV...</div>
+  <script>
+    fetch('CV.md')
+      .then(r => r.text())
+      .then(text => {
+        document.getElementById('cv-content').innerHTML = marked.parse(text);
+      })
+      .catch(e => {
+        document.getElementById('cv-content').innerHTML = "Please load this page through a local server (e.g. npx serve) to view the content.";
+      });
+  </script>
+</body>
+</html>
