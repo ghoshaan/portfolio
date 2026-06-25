@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sampurna "Shaan" Ghosh | Portfolio & CV</title>
+  <meta name="description" content="Portfolio and CV of Sampurna 'Shaan' Ghosh - Quality & Operations Specialist">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@300;400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div class="background-effects">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+  </div>
+
+  <nav class="navbar">
+    <div class="nav-brand">SHAAN<span>.</span></div>
+    <div class="nav-links">
+      <a href="#portfolio-section" class="nav-link active" data-target="portfolio-section">Portfolio</a>
+      <a href="#cv-section" class="nav-link" data-target="cv-section">CV</a>
+      <a href="CV.pdf" target="_blank" class="nav-link download-btn">Download PDF</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div id="portfolio-section" class="content-section active">
+      <div id="portfolio-content" class="markdown-body">Loading Portfolio...</div>
+    </div>
+    
+    <div id="cv-section" class="content-section">
+      <div id="cv-content" class="markdown-body">Loading CV...</div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Sampurna Ghosh.</p>
+  </footer>
+
+  <script>
+    // Navigation Logic
+    const links = document.querySelectorAll('.nav-link[data-target]');
+    const sections = document.querySelectorAll('.content-section');
+
+    links.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('data-target');
+        
+        // Update active link
+        links.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+
+        // Update active section
+        sections.forEach(sec => sec.classList.remove('active'));
+        document.getElementById(targetId).classList.add('active');
+        
+        // Smooth scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+
+    // Custom marked renderer to inject structure
+    const renderer = new marked.Renderer();
+    
+    // We can use the renderer to wrap elements or add classes if needed,
+    // but the CSS already targets the elements to create card-like structures.
+    marked.use({ renderer });
+
+    // Fetch and parse markdown
+    async function loadMarkdown(file, elementId) {
+      try {
+        const response = await fetch(file);
+        if (!response.ok) throw new Error('Network response was not ok');
+        const text = await response.text();
+        document.getElementById(elementId).innerHTML = marked.parse(text);
+      } catch (error) {
+        document.getElementById(elementId).innerHTML = `<div style="padding: 2rem; background: #111; border: 1px solid #333; border-radius: 12px; color: #ff6b6b;">Error loading ${file}. Note: For local development, this requires a local web server (e.g., npx serve) due to CORS restrictions on file:// protocol.</div>`;
+      }
+    }
+
+    // Initialize
+    loadMarkdown('portfolio.md', 'portfolio-content');
+    loadMarkdown('CV.md', 'cv-content');
+  </script>
+</body>
+</html>
