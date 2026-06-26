@@ -90,4 +90,4 @@ Workflow Tooling (Chrome Extensions, NDJSON Viewers) | Rapid Domain Acquisition
 
 ---
 
-*Portfolio and references available on request.*
+*Portfolio available at [ghoshaan.github.io/portfolio](https://ghoshaan.github.io/portfolio) | References available on request.*
