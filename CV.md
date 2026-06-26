@@ -58,7 +58,9 @@ Watzek Library, Lewis & Clark College | September 2018 – October 2021
 
 ## EDUCATION
 
-work towards Bachelor of Arts (Hons), Lewis & Clark College, Oregon, US — 2018–2022
+work towards Bachelor of Arts (Hons)
+
+Lewis & Clark College, Oregon, US — 2018–2022
 
 Selected academic work:
 
@@ -66,7 +68,8 @@ Selected academic work:
 
 [Give Juno (2007) the Props it Deserves](https://www.youtube.com/watch?v=WyeLs9VF9H8) Video Essay
 
-**International Baccalaureate Diploma**, UWC Mahindra College, India — May 2018
+**International Baccalaureate Diploma**
+UWC Mahindra College, India — May 2018
 Score: 38/45
 
 ---

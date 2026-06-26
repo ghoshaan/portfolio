@@ -84,8 +84,9 @@
     }
 
     // Initialize
-    loadMarkdown('portfolio.md', 'portfolio-content');
-    loadMarkdown('CV.md', 'cv-content');
+    const version = new Date().getTime();
+    loadMarkdown(`portfolio.md?v=${version}`, 'portfolio-content');
+    loadMarkdown(`CV.md?v=${version}`, 'cv-content');
   </script>
 </body>
 </html>
