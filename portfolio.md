@@ -6,7 +6,7 @@
 
 ## About This Document
 
-This document presents three case studies from my work as a Team Lead on a large-scale AI audio transcription project at Alignerr, where I was one of seven leads overseeing a team of approximately 1,000 contributors.
+This document presents four case studies from my work as a Team Lead on a large-scale AI audio transcription project at Alignerr, where I was one of seven leads overseeing a team of approximately 1,000 contributors.
 
 My role evolved from annotator to reviewer to Team Lead within a month. As lead, my focus was quality assurance at scale — auditing contributor performance, designing feedback systems, building tools to improve the research and review workflow, and communicating operational findings to project stakeholders.
 
@@ -97,6 +97,38 @@ I produced a structured analysis covering four categories of increased burden: c
 The budget increase was not approved. However, the client subsequently discontinued international dataset submissions and returned to US-sourced audio — effectively resolving the complications the analysis had outlined. The document achieved its practical goal, if not its stated one.
 
 *Full analysis available on request.*
+
+---
+
+## Case Study 4: AIP Charts Directory
+
+**Alignerr | Audio Transcription Project | Team Lead**
+
+### Background
+
+The chart accessibility problem outlined in Case Study 3 was not purely an argument for the client — it was an active daily obstacle. When working with international aviation audio, contributors needed to reference Aeronautical Information Publication (AIP) charts to verify airport procedures, approach plates, and navigational data mentioned in controller–pilot communications. These charts are published by each country's civil aviation authority, and there is no single centralised source.
+
+### The Problem
+
+Each country publishes its AIP charts differently — some behind paywalled portals, some as nested directories of PDFs with inconsistent naming, and some with no stable URL structure at all. Finding the correct chart for a specific airport required navigating unfamiliar government websites, often in another language, with no search functionality. For a team processing audio from dozens of countries, this meant repeated time spent on the same navigation problem — a different website, a different structure, every time.
+
+### What I Built
+
+I wrote custom download scripts for each country's aviation authority to systematically pull their published AIP chart sets. The scripts handled the variety of source formats — scraping nested HTML directories, following paginated download portals, and extracting PDFs from inconsistent URL patterns.
+
+I then built a searchable web-based directory that consolidated all the downloaded charts into a single interface: [AIP Charts Directory](https://ghoshaan.github.io/aip-charts/). The tool features:
+
+- **Fuzzy search** — powered by Fuse.js, allowing contributors to find charts by airport name, ICAO code, or procedure type without needing to know the exact file naming convention used by each country's authority
+- **Built-in document viewer** — charts open in an integrated PDF viewer with zoom controls, page navigation, and a sidebar thumbnail panel, eliminating the need to download files or switch between browser tabs
+- **Country filtering** — charts grouped and filterable by country, with statistics showing coverage at a glance
+- **Pinning system** — frequently referenced charts can be pinned for quick access, with state persisted in local storage
+
+### Impact
+
+- Replaced a fragmented, per-country manual lookup process with a single searchable interface
+- Eliminated the need for contributors to navigate foreign government aviation websites or maintain personal bookmark collections
+- Reduced chart lookup time from minutes (per unfamiliar country) to seconds
+- Directly addressed the chart accessibility burden documented in Case Study 3 — converting an operational complaint into a working solution
 
 ---
 
