@@ -1,5 +1,5 @@
 SAMPURNA "SHAAN" GHOSH
-ghoshaan@gmail.com | +44 7774 833 437
+ghoshaan@gmail.com | +44 7774 833 437 | London, United Kingdom
 
 ---
 
@@ -26,7 +26,7 @@ One of seven Team Leads responsible for quality assurance across a ~1,000-person
 ---
 
 **Senior Reviewer**
-Outlier AI | Remote | March – June 2025
+Outlier AI | Remote | March – December 2025
 
 - Evaluated AI-generated content and human annotations against established quality rubrics
 - Produced detailed written justifications for quality ratings to guide model refinement
@@ -76,8 +76,8 @@ Score: 38/45
 
 ## SKILLS
 
-Quality Assurance & Auditing | Process Design & Documentation | AI Data Operations
-Performance Management | Technical & Analytical Writing | Stakeholder Communication
+Quality Assurance & Auditing | Process Design & Documentation | AI Data Operations |
+Performance Management | Technical & Analytical Writing | Stakeholder Communication |
 Workflow Tooling (Chrome Extensions, NDJSON Viewers) | Rapid Domain Acquisition
 
 **Languages:** English (Native) | Bengali (Professional) | Hindi (Basic)
