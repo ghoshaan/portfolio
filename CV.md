@@ -14,7 +14,7 @@ Quality and Operations Specialist with hands-on experience leading QA at scale i
 **Quality & Operations Specialist / Team Lead**
 Alignerr | Remote | January – June 2026
 
-One of seven Team Leads responsible for quality assurance across a ~1,000-person audio transcription annotation team.
+One of six Team Leads responsible for quality assurance across a ~1,000-person audio transcription annotation team.
 
 - Designed and built Froyo Flight/Route Overlay, a Chrome extension consolidating aviation research into a single interface; reached 997 active users and saved ~2 minutes per data row at a throughput of 100,000+ rows per week. [Chrome Web Store](https://tinyurl.com/froyo-ext)
 - Developed an NDJSON-based audit viewer with inline differential display, doubling audit throughput and enabling richer, more teachable contributor feedback — adopted by all team leads
