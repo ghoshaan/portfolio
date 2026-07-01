@@ -110,7 +110,7 @@ The chart accessibility problem outlined in Case Study 3 was not purely an argum
 
 ### The Problem
 
-Each country publishes its AIP charts differently — some behind paywalled portals, some as nested directories of PDFs with inconsistent naming, and some with no stable URL structure at all. Finding the correct chart for a specific airport required navigating unfamiliar government websites, often in another language, with no search functionality. For a team processing audio from dozens of countries, this meant repeated time spent on the same navigation problem — a different website, a different structure, every time.
+Each country publishes its AIP charts differently — some on fragmented web portals, some as nested directories of PDFs with inconsistent naming, and some with no stable URL structure at all. Finding the correct chart for a specific airport required navigating unfamiliar government websites, often in another language, with no search functionality. For a team processing audio from dozens of countries, this meant repeated time spent on the same navigation problem — a different website, a different structure, every time.
 
 ### What I Built
 
