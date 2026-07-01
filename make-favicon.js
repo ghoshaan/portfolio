@@ -12,9 +12,23 @@ https.get(fontUrl, (res) => {
             const textToSVG = TextToSVG.loadSync(fontPath);
             const attributes = { fill: '#492ced' };
             const options = {x: 0, y: 0, fontSize: 100, anchor: 'top', attributes: attributes};
-            const svg = textToSVG.getSVG('s', options);
-            fs.writeFileSync('favicon.svg', svg);
-            console.log("Done generating SVG!");
+            const rawSvg = textToSVG.getSVG('s', options);
+            
+            const filterDef = `  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.5" result="blur" />
+      <feFlood flood-color="#d1a6ff" flood-opacity="0.9" result="glowColor" />
+      <feComposite in="glowColor" in2="blur" operator="in" result="glow" />
+      <feMerge>
+        <feMergeNode in="glow" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>\n`;
+
+            const modifiedSvg = rawSvg.replace('><path', `>\n${filterDef}  <path filter="url(#glow)"`);
+            fs.writeFileSync('favicon.svg', modifiedSvg);
+            console.log("Done generating SVG with glow!");
         });
     });
 });
