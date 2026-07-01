@@ -151,6 +151,21 @@ body {
   color: var(--text-header);
 }
 
+.nav-link-download {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+  position: relative;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+}
+
+.nav-link-download:hover {
+  color: var(--text-header);
+}
+
 .nav-link.active::after {
   content: '';
   position: absolute;
