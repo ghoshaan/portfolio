@@ -1032,12 +1032,73 @@ function renderAlignedDiff(slots) {
 }
 
 // Planespotting Slideshow Carousel Engine
-let slideshowImages = [];
+const slideshowImages = [
+  {
+    "src": {
+      "large": "images/slideshow/plane_9993931.jpg"
+    },
+    "photographer": "Vasily Baranov"
+  },
+  {
+    "src": {
+      "large": "images/slideshow/plane_37243550.jpg"
+    },
+    "photographer": "cnrdmroglu"
+  },
+  {
+    "src": {
+      "large": "images/slideshow/plane_31403081.jpg"
+    },
+    "photographer": "Planespotter Geneva"
+  },
+  {
+    "src": {
+      "large": "images/slideshow/plane_37935272.jpg"
+    },
+    "photographer": "Glen Zi 加侖子"
+  },
+  {
+    "src": {
+      "large": "images/slideshow/plane_34344820.jpg"
+    },
+    "photographer": "Curtis Cheng"
+  },
+  {
+    "src": {
+      "large": "images/slideshow/plane_31511240.jpg"
+    },
+    "photographer": "Planespotter Geneva"
+  },
+  {
+    "src": {
+      "large": "images/slideshow/plane_37589288.png"
+    },
+    "photographer": "Phát Trương"
+  },
+  {
+    "src": {
+      "large": "images/slideshow/plane_31403108.jpg"
+    },
+    "photographer": "Planespotter Geneva"
+  },
+  {
+    "src": {
+      "large": "images/slideshow/plane_34885871.jpg"
+    },
+    "photographer": "Dikshit Thakuria"
+  },
+  {
+    "src": {
+      "large": "images/slideshow/plane_31403077.jpg"
+    },
+    "photographer": "Planespotter Geneva"
+  }
+];
+
 let currentSlideshowIndex = 0;
 let slideshowInterval = null;
 
 async function initPlanespottersSlideshow() {
-  const apiKey = 'hlJuWuzMva6pz8JXnvIijqQCrVyBdRvKUx4PNvL1oTf1f1RnmOzQ7lZQ';
   const imgEl = document.getElementById('slideshow-img');
   const photographerEl = document.getElementById('slideshow-photographer');
   const prevBtn = document.getElementById('slideshow-prev');
@@ -1045,22 +1106,9 @@ async function initPlanespottersSlideshow() {
   
   if (!imgEl) return;
 
-  try {
-    const res = await fetch(`https://api.pexels.com/v1/search?query=planespotting&per_page=8`, {
-      headers: {
-        'Authorization': apiKey
-      }
-    });
-    if (res.ok) {
-      const data = await res.json();
-      if (data.photos && data.photos.length > 0) {
-        slideshowImages = data.photos;
-        renderSlideshowImage(0);
-        startSlideshowTimer();
-      }
-    }
-  } catch (e) {
-    console.warn("Failed to load planespotting slideshow:", e);
+  if (slideshowImages.length > 0) {
+    renderSlideshowImage(0);
+    startSlideshowTimer();
   }
 
   function renderSlideshowImage(index) {
