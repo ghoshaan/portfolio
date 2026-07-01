@@ -15,10 +15,11 @@ https.get(fontUrl, (res) => {
             const rawSvg = textToSVG.getSVG('s', options);
             
             const filterDef = `  <defs>
-    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="2.5" result="blur" />
-      <feFlood flood-color="#d1a6ff" flood-opacity="0.9" result="glowColor" />
-      <feComposite in="glowColor" in2="blur" operator="in" result="glow" />
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feMorphology operator="dilate" radius="1.5" in="SourceAlpha" result="thickened" />
+      <feGaussianBlur in="thickened" stdDeviation="2" result="blurred" />
+      <feFlood flood-color="#d1a6ff" flood-opacity="1" result="glowColor" />
+      <feComposite in="glowColor" in2="blurred" operator="in" result="glow" />
       <feMerge>
         <feMergeNode in="glow" />
         <feMergeNode in="SourceGraphic" />
@@ -26,7 +27,11 @@ https.get(fontUrl, (res) => {
     </filter>
   </defs>\n`;
 
-            const modifiedSvg = rawSvg.replace('><path', `>\n${filterDef}  <path filter="url(#glow)"`);
+            let modifiedSvg = rawSvg;
+            // Force it to use a square viewBox and remove hardcoded width/height to avoid stretching
+            modifiedSvg = modifiedSvg.replace(/<svg[^>]*>/, '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-20 30 80 80">');
+            modifiedSvg = modifiedSvg.replace('><path', `>\n${filterDef}  <path filter="url(#glow)"`);
+            
             fs.writeFileSync('favicon.svg', modifiedSvg);
             console.log("Done generating SVG with glow!");
         });
