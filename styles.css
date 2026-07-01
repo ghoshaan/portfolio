@@ -501,149 +501,220 @@ h1.intro-title span {
 /* Second Ear Auditor Simulator Styles      */
 /* ========================================= */
 
-.se-auditor-card {
-  background: var(--bg-card);
-  border: 1px solid var(--glass-border);
+.secondear-mock-app {
+  --bg: #0b0e0c;
+  --panel: #141a17;
+  --line: #1f2a23;
+  --line-2: #2a3a30;
+  --ink: #d6e3da;
+  --ink-dim: #7a8a80;
+  --ink-faint: #4b574f;
+  --amber: #ffb347;
+  --red: #e57373;
+  --green: #66bb6a;
+  --pilot: #6fcf97;
+  --atc: #ffb347;
+  
+  background: var(--bg);
+  color: var(--ink);
+  border: 1px solid var(--line-2);
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-  color: var(--text-color);
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
   width: 100%;
 }
 
-.se-auditor-header {
-  background: rgba(0,0,0,0.05);
-  padding: 12px 16px;
+.secondear-mock-app .se-auditor-header {
+  background: rgba(0,0,0,0.15);
+  padding: 14px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid var(--glass-border);
-  font-family: var(--font-heading);
+  border-bottom: 1px solid var(--line);
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 15px;
+}
+
+.secondear-mock-app .se-auditor-header em {
+  font-style: italic;
+  color: var(--amber);
   font-weight: 600;
-  font-size: 14px;
 }
 
-.se-auditor-header .pdf-btn {
-  font-size: 11px;
-  color: #fff;
-  background: var(--primary);
+.secondear-mock-app .se-auditor-header .pdf-btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  color: var(--bg);
+  background: var(--amber);
   text-decoration: none;
-  padding: 4px 10px;
+  padding: 4px 8px;
   border-radius: 4px;
-  font-weight: 500;
-  transition: background 0.2s;
+  font-weight: 600;
+  transition: opacity 0.2s;
 }
 
-.se-auditor-header .pdf-btn:hover {
-  background: var(--primary-hover);
+.secondear-mock-app .se-auditor-header .pdf-btn:hover {
+  opacity: 0.85;
 }
 
-.se-auditor-body {
-  padding: 16px;
+.secondear-mock-app .result {
+  border-bottom: 1px solid var(--line);
+  padding: 18px 24px;
+  background: transparent;
+}
+
+.secondear-mock-app .result-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 8px;
+}
+
+.secondear-mock-app .result-tags {
+  display: flex;
+  gap: 8px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-faint);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.secondear-mock-app .tag {
+  padding: 2px 8px;
+  border: 1px solid var(--line-2);
+  background: transparent;
+  font-size: 11px;
+}
+
+.secondear-mock-app .tag-batch {
+  color: var(--amber);
+  border-color: rgba(255,179,71,0.4);
+}
+
+.secondear-mock-app .tag-dur {
+  color: var(--ink-dim);
+  border: none;
+  padding-left: 4px;
+}
+
+.secondear-mock-app .tag-tl-edit {
+  background: var(--panel);
+  border: 1px solid var(--line-2);
+  color: var(--ink-dim);
+  cursor: pointer;
+  user-select: none;
+  font-size: 11px;
+  padding: 4px 12px;
+  font-family: inherit;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.secondear-mock-app .tag-tl-edit:hover,
+.secondear-mock-app .tag-tl-edit.open {
+  color: #d4a0ff;
+  border-color: rgba(212,160,255,0.4);
+}
+
+.secondear-mock-app .result-body {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-top: 8px;
+}
+
+.secondear-mock-app .result-rating-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.secondear-mock-app .rating-btn {
+  width: 66px;
+  min-height: 34px;
+  background: var(--panel);
+  border: 1px solid var(--line-2);
+  color: var(--ink-dim);
+  font-size: 11px;
+  font-family: inherit;
+  cursor: default;
+  transition: all 0.15s;
+  line-height: 1.3;
+}
+
+.secondear-mock-app .rating-btn.active {
+  box-shadow: inset 0 0 0 2px currentColor;
+}
+
+.secondear-mock-app .reject-btn { border-color: hsl(6, 55%, 46%); color: hsl(6, 55%, 46%); }
+.secondear-mock-app .reject-btn.active { background: hsla(6, 85%, 46%, 0.12); border-color: hsl(6, 85%, 46%); color: hsl(6, 85%, 46%); }
+.secondear-mock-app .major-btn { border-color: hsl(28, 55%, 52%); color: hsl(28, 55%, 52%); }
+.secondear-mock-app .major-btn.active { background: hsla(28, 85%, 52%, 0.12); border-color: hsl(28, 85%, 52%); color: hsl(28, 85%, 52%); }
+.secondear-mock-app .minor-btn { border-color: hsl(35, 55%, 64%); color: hsl(35, 55%, 64%); }
+.secondear-mock-app .minor-btn.active { background: hsla(35, 85%, 64%, 0.12); border-color: hsl(35, 85%, 64%); color: hsl(35, 85%, 64%); }
+.secondear-mock-app .good-btn { border-color: var(--green); color: var(--green); }
+.secondear-mock-app .good-btn.active { background: rgba(102,187,106,0.12); border-color: var(--green); color: var(--green); }
+
+.secondear-mock-app .result-content {
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.se-label {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+.secondear-mock-app .segments {
+  display: grid;
+  gap: 4px;
 }
 
-/* Audio Player */
-.se-audio-player {
-  display: flex;
-  align-items: center;
+.secondear-mock-app .seg {
+  display: grid;
+  grid-template-columns: 48px 48px 1fr;
   gap: 12px;
-  background: var(--input-bg);
-  padding: 10px 14px;
-  border-radius: 8px;
-  border: 1px solid var(--glass-border);
+  align-items: baseline;
+  padding: 4px 0;
 }
 
-.se-play-btn {
-  background: var(--primary);
-  color: #fff;
-  border: none;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  transition: background 0.2s;
+.secondear-mock-app .seg-time {
+  color: var(--ink-faint);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
 }
 
-.se-play-btn:hover {
-  background: var(--primary-hover);
-}
-
-.se-audio-progress {
-  flex-grow: 1;
-  height: 4px;
-  accent-color: var(--primary);
-  background: rgba(255,255,255,0.1);
-  border-radius: 2px;
-  cursor: pointer;
-  border: none;
-  outline: none;
-}
-
-.se-audio-time {
+.secondear-mock-app .seg-role {
   font-size: 11px;
-  font-family: monospace;
-  color: var(--text-muted);
-  min-width: 75px;
-  text-align: right;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  white-space: nowrap;
 }
 
-/* Originals and Edits */
-.se-original-text {
-  font-family: monospace;
-  background: var(--input-bg);
-  padding: 8px 12px;
-  border-radius: 6px;
-  border-left: 3px solid var(--primary);
-  font-size: 12px;
-  color: var(--text-color);
-  overflow-x: auto;
+.secondear-mock-app .seg-role.pilot {
+  color: var(--pilot);
 }
 
-.se-textarea {
-  width: 100%;
-  background: var(--input-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: 6px;
-  color: var(--text-header);
-  padding: 8px 12px;
-  font-family: monospace;
-  font-size: 12px;
-  outline: none;
-  resize: vertical;
+.secondear-mock-app .seg-role.atc {
+  color: var(--atc);
 }
 
-.se-textarea:focus {
-  border-color: var(--primary);
+.secondear-mock-app .seg-text {
+  color: var(--ink);
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 13px;
+  line-height: 1.55;
+  word-break: break-all;
 }
 
-.se-diff-container {
-  background: var(--input-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: 6px;
-  padding: 12px 14px;
-  min-height: 60px;
-  font-family: monospace;
-  font-size: 12px;
-  line-height: 1.6;
-}
-
-/* Aligned Diff stack visualizer classes */
-.diff-aligned {
+/* Diff Stack visualization classes inside Second Ear */
+.secondear-mock-app .diff-aligned {
   display: inline-flex;
   flex-wrap: wrap;
   column-gap: 0.35em;
@@ -651,38 +722,34 @@ h1.intro-title span {
   align-items: center;
 }
 
-.da-col {
+.secondear-mock-app .da-col {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  background: rgba(255,255,255,0.02);
-  padding: 2px 4px;
-  border-radius: 4px;
-  border: 1px dashed rgba(255,255,255,0.06);
 }
 
-.da-col > span, .diff-aligned > .da-eq {
+.secondear-mock-app .da-col > span, 
+.secondear-mock-app .diff-aligned > .da-eq {
   display: block;
   min-height: 1.55em;
   white-space: nowrap;
   text-align: center;
 }
 
-.da-eq {
-  color: var(--text-color);
+.secondear-mock-app .da-eq {
+  color: var(--ink);
 }
 
-.da-del {
+.secondear-mock-app .da-del {
   color: var(--red) !important;
   text-decoration: line-through;
 }
 
-.da-ins {
+.secondear-mock-app .da-ins {
   color: var(--green) !important;
 }
 
-mark.diff-del {
+.secondear-mock-app mark.diff-del {
   background: transparent;
   color: var(--red);
   text-decoration: line-through;
@@ -691,81 +758,178 @@ mark.diff-del {
   font-style: normal;
 }
 
-mark.diff-add {
-  background: rgba(16,185,129,0.25);
+.secondear-mock-app mark.diff-add {
+  background: rgba(102,187,106,0.25);
   color: var(--green);
   border-radius: 1px;
   padding: 0;
   font-style: normal;
 }
 
-/* Rating Controls */
-.se-rating-group {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
+/* TL Editor Panel */
+.secondear-mock-app .tl-editor {
+  display: none;
+  margin-top: 10px;
+  border: 1px solid rgba(212,160,255,0.25);
+  background: rgba(212,160,255,0.03);
+  padding: 12px 14px;
 }
 
-.se-rating-btn {
-  flex: 1;
-  background: var(--input-bg);
-  border: 1px solid var(--glass-border);
-  color: var(--text-color);
+.secondear-mock-app .tl-editor.open {
+  display: block;
+}
+
+.secondear-mock-app .tl-editor-header {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #d4a0ff;
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+
+.secondear-mock-app .tl-seg-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.secondear-mock-app .tl-text-input {
+  background: var(--bg);
+  border: 1px solid var(--line-2);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 13px;
+  padding: 6px 10px;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.15s;
+}
+
+.secondear-mock-app .tl-text-input:focus {
+  border-color: #d4a0ff;
+  box-shadow: 0 0 0 1px rgba(212,160,255,0.25);
+}
+
+.secondear-mock-app .tl-action-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line-2);
+}
+
+.secondear-mock-app .tl-save-btn {
+  background: #d4a0ff;
+  color: var(--bg);
+  border: 1px solid #d4a0ff;
   font-family: inherit;
   font-size: 11px;
-  font-weight: 600;
-  padding: 6px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.se-rating-btn:hover {
-  background: rgba(255,255,255,0.05);
-  border-color: var(--text-muted);
-}
-
-.se-rating-btn.active {
-  color: #fff;
-  border-color: var(--primary);
-}
-
-.se-rating-btn[data-rating="good"].active { background: #10b981; }
-.se-rating-btn[data-rating="minor"].active { background: #f59e0b; }
-.se-rating-btn[data-rating="major"].active { background: #ef4444; }
-.se-rating-btn[data-rating="reject"].active { background: #7f1d1d; }
-
-/* Score and Badges */
-.se-score-card {
-  display: flex;
-  align-items: center;
-  background: var(--input-bg);
-  padding: 10px 14px;
-  border-radius: 8px;
-  border: 1px solid var(--glass-border);
-  font-size: 13px;
-  margin-top: 8px;
-}
-
-.se-score-card strong {
-  font-size: 16px;
-  color: var(--text-header);
-  margin-left: 8px;
-}
-
-.rating-badge {
-  font-size: 9px;
-  font-weight: 800;
-  padding: 2px 8px;
-  border-radius: 10px;
-  color: #fff;
   text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 7px 16px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: opacity 0.15s;
 }
 
-.rating-badge.good { background: #10b981; }
-.rating-badge.minor { background: #f59e0b; }
-.rating-badge.major { background: #ef4444; }
-.rating-badge.reject { background: #7f1d1d; }
+.secondear-mock-app .tl-save-btn:hover {
+  opacity: 0.85;
+}
+
+.secondear-mock-app .tl-cancel-btn {
+  background: transparent;
+  border: 1px solid var(--line-2);
+  color: var(--ink-dim);
+  font-family: inherit;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 7px 16px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.secondear-mock-app .tl-cancel-btn:hover {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
+/* Comment Section */
+.secondear-mock-app .comment-wrap {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--line-2);
+}
+
+.secondear-mock-app .comment-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.secondear-mock-app .comment-input {
+  width: 100%;
+  background: var(--panel);
+  border: 1px solid var(--line-2);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 13px;
+  padding: 8px 12px;
+  outline: none;
+  resize: vertical;
+  min-height: 44px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.secondear-mock-app .comment-input:focus {
+  border-color: var(--amber);
+  box-shadow: 0 0 0 1px var(--amber);
+}
+
+.secondear-mock-app .paste-btn {
+  width: 66px;
+  min-height: 44px;
+  background: var(--panel);
+  border: 1px solid var(--line-2);
+  color: var(--ink-dim);
+  font-size: 11px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+  line-height: 1.3;
+  flex-shrink: 0;
+  align-self: stretch;
+}
+
+.secondear-mock-app .paste-btn:hover {
+  border-color: #4095ff;
+  color: #4095ff;
+  background: rgba(64,149,255,0.08);
+}
+
+.secondear-mock-app .annotator-line {
+  font-size: 11px;
+  color: var(--ink-faint);
+  margin-top: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.secondear-mock-app .annotator-line b {
+  color: var(--ink-dim);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.secondear-mock-app .se-app-footer {
+  padding: 16px;
+  text-align: center;
+  border-top: 1px solid var(--line);
+  background: rgba(0,0,0,0.15);
+}
+
 
 /* CV Layout Design */
 .cv-container {

@@ -672,36 +672,69 @@ function initFroyoDemo() {
   }
 }
 
-// Second Ear Simulator Logic
+// Second Ear Simulator Logic (Matches real UX interactions)
 function initSecondEarDemo() {
   const playBtn = document.getElementById('se-play-btn');
   const progress = document.getElementById('se-audio-progress');
   const timeLabel = document.getElementById('se-audio-time');
   const correctionInput = document.getElementById('se-correction-input');
   const diffOutput = document.getElementById('se-diff-output');
-  const ratingBadge = document.getElementById('se-rating-badge');
   const scoreVal = document.getElementById('se-score-val');
+  
+  // Interactive triggers
+  const editTrigger = document.getElementById('se-edit-trigger');
+  const tlEditor = document.getElementById('se-tl-editor');
+  const saveBtn = document.getElementById('se-save-btn');
+  const cancelBtn = document.getElementById('se-cancel-btn');
   
   if (!playBtn || !correctionInput || !diffOutput) return;
   
   const originalText = "NOVEMBER NINE SEVEN SEVEN THREE VFR DEP BOS DIRECT SIE PARCH STAR";
+  let currentSegmentText = originalText;
+
+  // Run initial diff
+  updateDiffAndScore();
   
-  // Player state
+  // Editor Toggle
+  if (editTrigger && tlEditor) {
+    editTrigger.addEventListener('click', () => {
+      tlEditor.classList.toggle('open');
+      editTrigger.textContent = tlEditor.classList.contains('open') ? 'Close Editor' : 'Edit Transcription';
+    });
+  }
+
+  // Cancel Edit
+  if (cancelBtn && tlEditor) {
+    cancelBtn.addEventListener('click', () => {
+      tlEditor.classList.remove('open');
+      if (editTrigger) editTrigger.textContent = 'Edit Transcription';
+      correctionInput.value = currentSegmentText;
+      updateDiffAndScore();
+    });
+  }
+
+  // Save Edit
+  if (saveBtn && tlEditor) {
+    saveBtn.addEventListener('click', () => {
+      tlEditor.classList.remove('open');
+      if (editTrigger) editTrigger.textContent = 'Edit Transcription';
+      currentSegmentText = correctionInput.value;
+      updateDiffAndScore();
+    });
+  }
+
+  // Correction input event listener (runs dynamically in open panel)
+  correctionInput.addEventListener('input', () => {
+    updateDiffAndScore();
+  });
+  
+  // Speech Synthesis Player
   let speechUtterance = null;
   let speechInterval = null;
   let audioPlaying = false;
   let audioDuration = 12; // seconds
   let audioCurrentTime = 0;
 
-  // Run initial diff
-  updateDiffAndScore();
-  
-  // Correction input event listener
-  correctionInput.addEventListener('input', () => {
-    updateDiffAndScore();
-  });
-  
-  // Speech Synthesis Player
   playBtn.addEventListener('click', () => {
     if (audioPlaying) {
       pauseAudio();
@@ -737,7 +770,7 @@ function initSecondEarDemo() {
     
     scoreVal.textContent = `${score}%`;
     
-    // Auto-update severity rating based on score
+    // Auto-update severity rating based on score (highlights rating buttons)
     let rating = 'good';
     if (score >= 95) {
       rating = 'good';
@@ -749,11 +782,8 @@ function initSecondEarDemo() {
       rating = 'reject';
     }
     
-    ratingBadge.textContent = rating.toUpperCase();
-    ratingBadge.className = `rating-badge ${rating}`;
-    
-    // Sync active state on derived rating buttons
-    document.querySelectorAll('.se-rating-btn').forEach(btn => {
+    // Highlight matching rating button in vertical rating col
+    document.querySelectorAll('.secondear-mock-app .rating-btn').forEach(btn => {
       if (btn.getAttribute('data-rating') === rating) {
         btn.classList.add('active');
       } else {
@@ -766,9 +796,8 @@ function initSecondEarDemo() {
     audioPlaying = true;
     playBtn.textContent = '⏸';
     
-    // Trigger Speech Synthesis
     if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel(); // stop current speech
+      window.speechSynthesis.cancel();
       speechUtterance = new SpeechSynthesisUtterance("November nine seven seven three, visual departure Boston, direct Sea Isle, Parch, Sea Isle star.");
       speechUtterance.rate = 0.85;
       speechUtterance.pitch = 0.9;
@@ -784,7 +813,6 @@ function initSecondEarDemo() {
       window.speechSynthesis.speak(speechUtterance);
     }
     
-    // Animate progress bar
     speechInterval = setInterval(() => {
       audioCurrentTime += 0.1;
       if (audioCurrentTime >= audioDuration) {
@@ -817,17 +845,12 @@ function initSecondEarDemo() {
   
   function updateProgressUI() {
     const percent = (audioCurrentTime / audioDuration) * 100;
-    progress.value = percent;
+    if (progress) progress.value = percent;
     
     const minutes = Math.floor(audioCurrentTime / 60);
     const seconds = Math.floor(audioCurrentTime % 60).toString().padStart(2, '0');
     timeLabel.textContent = `${minutes}:${seconds} / 0:12`;
   }
-  
-  progress.addEventListener('input', () => {
-    audioCurrentTime = (progress.value / 100) * audioDuration;
-    updateProgressUI();
-  });
 }
 
 // LCS and word diff functions from the live Second Ear app HTML

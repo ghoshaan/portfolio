@@ -9,7 +9,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,600&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
@@ -109,53 +109,75 @@
             </div>
           </div>
           <div class="cs-visuals-panel">
-            <div class="se-auditor-card">
+            <div class="secondear-mock-app">
               <div class="se-auditor-header">
-                <span>Second Ear Auditor Simulator</span>
+                <span>second<em>ear</em> Audit Workspace</span>
                 <a href="https://drive.google.com/file/d/12uChzZEtnCUr627xJlb11pNthogBsin3/view" target="_blank" class="pdf-btn">View Sample PDF Export ↗</a>
               </div>
               
-              <div class="se-auditor-body">
-                <!-- Audio player -->
-                <div class="se-audio-player">
-                  <button id="se-play-btn" class="se-play-btn">▶</button>
-                  <input type="range" id="se-audio-progress" class="se-audio-progress" value="0" min="0" max="100">
-                  <span id="se-audio-time" class="se-audio-time">0:00 / 0:12</span>
+              <div class="result">
+                <div class="result-head">
+                  <div class="result-tags">
+                    <span class="tag tag-batch">Batch 14</span>
+                    <span class="tag tag-dur">Duration: 12.0s</span>
+                    <button id="se-play-btn" class="tag" style="background: var(--primary); color:#fff; cursor:pointer; border:none; padding: 2px 8px; border-radius: 4px; font-weight: bold;">▶ Play Audio</button>
+                    <span id="se-audio-time" style="font-family: monospace; font-size: 11px; margin-left: 4px; color: var(--ink-dim);">0:00 / 0:12</span>
+                    <input type="range" id="se-audio-progress" style="display:none;" value="0" min="0" max="100">
+                  </div>
+                  <button class="tag-tl-edit" id="se-edit-trigger">Edit Transcription</button>
                 </div>
                 
-                <!-- Original Transcription -->
-                <div class="se-label">Original Transcription (Audio):</div>
-                <div class="se-original-text">NOVEMBER NINE SEVEN SEVEN THREE VFR DEP BOS DIRECT SIE PARCH STAR</div>
-                
-                <!-- Correction edit -->
-                <div class="se-label">Auditor Correction (Edit inline to calculate score):</div>
-                <textarea id="se-correction-input" class="se-textarea" rows="2">NOVEMBER NINE SEVEN SEVEN THREE VFR DEP BOS DIRECT SIE PARCH STAR</textarea>
-                
-                <!-- Live Differential -->
-                <div class="se-label">Live Aligned Differential (HTML Visualisation):</div>
-                <div id="se-diff-output" class="se-diff-container"></div>
-                
-                <!-- Rating group (Driven by LCS Score) -->
-                <div class="se-label">Derived Severity Assessment:</div>
-                <div class="se-rating-group" style="pointer-events: none; opacity: 0.85;">
-                  <button class="se-rating-btn" data-rating="good">Good</button>
-                  <button class="se-rating-btn" data-rating="minor">Minor</button>
-                  <button class="se-rating-btn" data-rating="major">Major</button>
-                  <button class="se-rating-btn" data-rating="reject">Reject</button>
+                <div class="result-body">
+                  <div class="result-rating-col">
+                    <button class="rating-btn good-btn active" data-rating="good" disabled>Good</button>
+                    <button class="rating-btn minor-btn" data-rating="minor" disabled>Minor</button>
+                    <button class="rating-btn major-btn" data-rating="major" disabled>Major</button>
+                    <button class="rating-btn reject-btn" data-rating="reject" disabled>Reject</button>
+                  </div>
+                  
+                  <div class="result-content">
+                    <div class="segments">
+                      <div class="seg">
+                        <span class="seg-time">00:00</span>
+                        <span class="seg-role pilot">PILOT:</span>
+                        <span id="se-diff-output" class="seg-text">NOVEMBER NINE SEVEN SEVEN THREE VFR DEP BOS DIRECT SIE PARCH STAR</span>
+                      </div>
+                    </div>
+                    
+                    <!-- Inline TL Editor -->
+                    <div id="se-tl-editor" class="tl-editor">
+                      <div class="tl-editor-header">Edit Transcription Segment</div>
+                      <div class="tl-seg-row">
+                        <span style="font-size: 11px; font-weight: bold; color: var(--pilot); width: 44px; display: inline-block;">PILOT:</span>
+                        <input type="text" id="se-correction-input" class="tl-text-input" value="NOVEMBER NINE SEVEN SEVEN THREE VFR DEP BOS DIRECT SIE PARCH STAR">
+                      </div>
+                      <div class="tl-action-row">
+                        <button id="se-save-btn" class="tl-save-btn">Save</button>
+                        <button id="se-cancel-btn" class="tl-cancel-btn">Cancel</button>
+                        <span style="margin-left: auto; font-size: 11px; color: var(--ink-dim); align-self: center;">
+                          LCS Score: <strong id="se-score-val" style="color: var(--amber);">100%</strong>
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="comment-wrap">
+                      <div class="comment-row">
+                        <textarea class="comment-input" placeholder="Auditor feedback comments..."></textarea>
+                        <button class="paste-btn" onclick="alert('Comment saved!')">Save<br>Note</button>
+                      </div>
+                    </div>
+                    
+                    <div class="annotator-line">
+                      Annotator: <b>ghoshaan</b> | Auditor: <b>shaan (You)</b> | Date: <b>2026-07-01</b>
+                    </div>
+                  </div>
                 </div>
-                
-                <!-- Audit Score -->
-                <div class="se-score-card">
-                  <span>Calculated Score:</span>
-                  <strong id="se-score-val">100%</strong>
-                  <span id="se-rating-badge" class="rating-badge good" style="margin-left:auto;">GOOD</span>
-                </div>
-                
-                <div style="text-align: center; margin-top: 15px;">
-                  <button class="action-btn open-lightbox" data-url="https://ghoshaan.github.io/second-ear/" data-title="Second Ear (ATC Search & Audit)">
-                    Launch Complete App
-                  </button>
-                </div>
+              </div>
+              
+              <div class="se-app-footer">
+                <button class="action-btn open-lightbox" data-url="https://ghoshaan.github.io/second-ear/" data-title="Second Ear (ATC Search & Audit)">
+                  Launch Full Auditing Application
+                </button>
               </div>
             </div>
           </div>
