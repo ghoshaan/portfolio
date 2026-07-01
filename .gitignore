@@ -1,0 +1,4 @@
+node_modules/
+.agents/evaluated_jobs.json
+preview.html
+temp_previews/
