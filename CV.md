@@ -17,7 +17,8 @@ Alignerr | Remote | January – June 2026
 One of six Team Leads responsible for quality assurance across a ~1,000-person audio transcription annotation team.
 
 - Designed and built Froyo Flight/Route Overlay, a Chrome extension consolidating aviation research into a single interface; reached 997 active users and saved ~2 minutes per data row at a throughput of 100,000+ rows per week. [Chrome Web Store](https://tinyurl.com/froyo-ext)
-- Developed an NDJSON-based audit viewer with inline differential display, doubling audit throughput and enabling richer, more teachable contributor feedback — adopted by all team leads
+- Developed Second Ear, an NDJSON-based audit viewer with inline differential display, doubling audit throughput and enabling richer, more teachable contributor feedback — adopted by all team leads. [GitHub](https://github.com/ghoshaan/second-ear)
+- Built a searchable web-based directory consolidating fragmented international AIP charts, incorporating fuzzy search and an integrated PDF viewer to reduce lookup times from minutes to seconds. [AIP Charts Directory](https://ghoshaan.github.io/aip-charts/)
 - Conducted structured performance audits with detailed trend-based feedback documents, and held final responsibility for contributor promotion and removal decisions
 - Produced an evidence-based operational scope analysis that directly influenced a client decision to adjust project parameters
 - Reviewed candidate intake submissions to assess contributor potential, distinguishing surface-level errors from underlying research and judgment capability
@@ -81,15 +82,6 @@ Performance Management | Technical & Analytical Writing | Stakeholder Communicat
 Workflow Tooling (Chrome Extensions, NDJSON Viewers) | Rapid Domain Acquisition
 
 **Languages:** English (Native) | Bengali (Professional) | Hindi (Basic)
-
----
-
-## SELECTED HONOURS
-
-- European Citizenship Award, United Youth Journalists (2016)
-- Telluride Association Summer Programme (TASP), University of Michigan (2017)
-- IB World Student Conference, King's College London (2017)
-- Winterim Business Pitch Competition, Bates Center for Entrepreneurship (2020)
 
 ---
 
