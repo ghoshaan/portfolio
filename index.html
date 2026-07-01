@@ -9,7 +9,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@300;400;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
@@ -21,58 +21,347 @@
 
   <nav class="navbar">
     <div class="nav-brand">shaan<span>.</span></div>
-    <div class="nav-links">
-      <a href="#portfolio-section" class="nav-link active" data-target="portfolio-section">Portfolio</a>
-      <a href="#cv-section" class="nav-link" data-target="cv-section">CV</a>
-      <a href="CV.pdf" target="_blank" class="nav-link download-btn">Download PDF</a>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a class="nav-link active" data-target="portfolio-section">Portfolio</a>
+        <a class="nav-link" data-target="cv-section">CV</a>
+      </div>
+      <button id="theme-toggle" class="theme-toggle-btn">☀️ Dark Mode</button>
     </div>
   </nav>
 
   <main class="container">
+    <!-- PORTFOLIO SECTION -->
     <div id="portfolio-section" class="content-section active">
-      <div id="portfolio-content" class="markdown-body">Loading Portfolio...</div>
+      <h1 class="intro-title"><span>Portfolio</span></h1>
+      <p class="intro-desc">
+        Welcome to my interactive portfolio of work. I design operational workflows, lead QA at scale in AI post-training environments, and build specialized browser tooling to automate research and validation. Explore my project case studies below and launch their live simulators.
+      </p>
+
+      <!-- Planespotting Slideshow Carousel Banner -->
+      <div class="planespotters-slideshow">
+        <div class="slideshow-wrapper">
+          <img id="slideshow-img" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23121625'/></svg>" alt="Planespotting Photography Gallery">
+          <div class="slideshow-overlay">
+            <span id="slideshow-photographer">Loading planespotting highlights...</span>
+          </div>
+          <button id="slideshow-prev" class="slideshow-btn prev-btn">❮</button>
+          <button id="slideshow-next" class="slideshow-btn next-btn">❯</button>
+        </div>
+      </div>
+
+      <div class="case-study-list">
+        <!-- CASE STUDY 1: FROYO -->
+        <div class="case-study-card">
+          <div class="cs-info">
+            <span class="cs-meta">Case Study 1</span>
+            <h2>Froyo Flight Extension</h2>
+            <div class="cs-description">
+              <h3>Background</h3>
+              <p>On a large-scale audio transcription project at Alignerr, contributors were required to accurately transcribe aviation communications containing specialised identifiers — aircraft callsigns, navigational fix names, route waypoints, and aircraft types. This information was dense and required active research to verify correctly.</p>
+              
+              <h3>The Problem</h3>
+              <p>Contributors skipped verification due to speed pressure or guessing from audio, leading to systemic transcription errors. Manual research was slow, requiring multiple tabs and lookup sources.</p>
+              
+              <h3>What I Built</h3>
+              <p>I built a Chrome extension that injected a unified research panel directly into the transcription UI, resolving airport/fix names from FAA CIFP databases and decoding aircraft registration details dynamically.</p>
+              
+              <h3>Impact</h3>
+              <p>Saved ~2 minutes per row, reached <strong>997 peak active users</strong>, and resolved an entire error category across the team.</p>
+            </div>
+          </div>
+          <div class="cs-visuals-panel">
+            <div class="live-app-card">
+              <div id="froyo-guide-step" class="guide-step-alert" style="margin-bottom: 1.5rem; text-align: left; width: 100%; display: flex; justify-content: space-between; align-items: center;">
+                <span id="froyo-guide-text"><strong>Step 1:</strong> Type <span class="guide-hl">"jetblue"</span> in the Callsign input.</span>
+                <button id="froyo-guide-next" class="guide-next-btn" title="Next Instruction">Next ➔</button>
+              </div>
+              <p>Launch Froyo as a floating extension panel overlay on this page! You can drag and resize it anywhere, minimize it, or search for active flight numbers (e.g. JBU334) using a live scraper.</p>
+              <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
+                <button id="toggle-froyo-btn" class="action-btn">
+                  Launch Floating Extension
+                </button>
+                <a href="https://tinyurl.com/froyo-ext" target="_blank" class="action-btn" style="background: transparent; border: 1px solid var(--primary); color: var(--primary); text-decoration: none; box-shadow: none;">
+                  Install Extension ↗
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CASE STUDY 2: SECOND EAR -->
+        <div class="case-study-card">
+          <div class="cs-info">
+            <span class="cs-meta">Case Study 2</span>
+            <h2>Second Ear (ATC Search & Audit Tool)</h2>
+            <div class="cs-description">
+              <h3>Background</h3>
+              <p>As Team Lead overseeing a ~1,000-person annotation team on an audio transcription project, I audited contributor transcriptions to ensure training data met model standards.</p>
+              
+              <h3>The Problem</h3>
+              <p>Auditing was restricted to the slow default platform UI, limiting audits to 10–15 rows. Auditing feedback was delivered in text, which made it hard to analyze patterns.</p>
+              
+              <h3>What I Built</h3>
+              <p>I built an NDJSON-based audit viewer. Auditors could upload candidate data, edit transcriptions inline with a visual character diff, rate issues on a severity scale, and export audit sheets directly to PDF.</p>
+              
+              <h3>Impact</h3>
+              <p>Audit capacity doubled (25–30 rows/session). Feedback richness directly enabled a structured improvement pathway policy instead of simple bans.</p>
+            </div>
+          </div>
+          <div class="cs-visuals-panel">
+            <div class="se-auditor-card">
+              <div class="se-auditor-header">
+                <span>Second Ear Auditor Simulator</span>
+                <a href="https://drive.google.com/file/d/12uChzZEtnCUr627xJlb11pNthogBsin3/view" target="_blank" class="pdf-btn">View Sample PDF Export ↗</a>
+              </div>
+              
+              <div class="se-auditor-body">
+                <!-- Audio player -->
+                <div class="se-audio-player">
+                  <button id="se-play-btn" class="se-play-btn">▶</button>
+                  <input type="range" id="se-audio-progress" class="se-audio-progress" value="0" min="0" max="100">
+                  <span id="se-audio-time" class="se-audio-time">0:00 / 0:12</span>
+                </div>
+                
+                <!-- Original Transcription -->
+                <div class="se-label">Original Transcription (Audio):</div>
+                <div class="se-original-text">NOVEMBER NINE SEVEN SEVEN THREE VFR DEP BOS DIRECT SIE PARCH STAR</div>
+                
+                <!-- Correction edit -->
+                <div class="se-label">Auditor Correction (Edit inline to calculate score):</div>
+                <textarea id="se-correction-input" class="se-textarea" rows="2">NOVEMBER NINE SEVEN SEVEN THREE VFR DEP BOS DIRECT SIE PARCH STAR</textarea>
+                
+                <!-- Live Differential -->
+                <div class="se-label">Live Aligned Differential (HTML Visualisation):</div>
+                <div id="se-diff-output" class="se-diff-container"></div>
+                
+                <!-- Rating group (Driven by LCS Score) -->
+                <div class="se-label">Derived Severity Assessment:</div>
+                <div class="se-rating-group" style="pointer-events: none; opacity: 0.85;">
+                  <button class="se-rating-btn" data-rating="good">Good</button>
+                  <button class="se-rating-btn" data-rating="minor">Minor</button>
+                  <button class="se-rating-btn" data-rating="major">Major</button>
+                  <button class="se-rating-btn" data-rating="reject">Reject</button>
+                </div>
+                
+                <!-- Audit Score -->
+                <div class="se-score-card">
+                  <span>Calculated Score:</span>
+                  <strong id="se-score-val">100%</strong>
+                  <span id="se-rating-badge" class="rating-badge good" style="margin-left:auto;">GOOD</span>
+                </div>
+                
+                <div style="text-align: center; margin-top: 15px;">
+                  <button class="action-btn open-lightbox" data-url="https://ghoshaan.github.io/second-ear/" data-title="Second Ear (ATC Search & Audit)">
+                    Launch Complete App
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CASE STUDY 3: OPERATIONAL SCOPE -->
+        <div class="case-study-card">
+          <div class="cs-info">
+            <span class="cs-meta">Case Study 3</span>
+            <h2>Operational Scope Analysis</h2>
+            <div class="cs-description">
+              <h3>Background</h3>
+              <p>When the project expanded from US aviation audio to international datasets, workflow complexity increased. I was asked to document the operational impact to support client budgeting decisions.</p>
+              
+              <h3>What I Documented</h3>
+              <p>I produced an operational analysis exposing international aviation friction across chart accessibility, licensing costs, linguistic boundaries, and transponder-less flight tracking limitations.</p>
+              
+              <h3>Outcome</h3>
+              <p>While the budget increase was declined, the analysis successfully convinced the client to withdraw international files and focus on clean US datasets, effectively resolving the issues.</p>
+            </div>
+          </div>
+          <div class="cs-visuals-panel">
+            <h3 style="color: var(--text-header); font-family: var(--font-heading); margin-bottom: 0.5rem; font-size: 1.1rem;">Interactive Cost & Operational Friction Board</h3>
+            
+            <!-- Comparative Widget -->
+            <div class="froyo-extension-mockup" style="background: var(--bg-card); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--glass-border); box-shadow: none;">
+              <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem;">
+                <button class="theme-toggle-btn scope-toggle-btn active" data-scope="us" style="flex: 1; border-radius: 6px;">US Datasets</button>
+                <button class="theme-toggle-btn scope-toggle-btn" data-scope="intl" style="flex: 1; border-radius: 6px;">International Datasets</button>
+              </div>
+              
+              <div style="display: flex; flex-direction: column; gap: 1rem;">
+                <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; font-size: 13px;">
+                  <span style="color: var(--text-muted);">Chart Access</span>
+                  <strong id="metric-charts" style="color: var(--text-header);">Structured HTML / FAA Index</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; font-size: 13px;">
+                  <span style="color: var(--text-muted);">Licensing Cost</span>
+                  <strong id="metric-cost" style="color: var(--text-header);">$0 (Public Domain)</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; font-size: 13px;">
+                  <span style="color: var(--text-muted);">ADS-B Flight Tracking</span>
+                  <strong id="metric-tracking" style="color: var(--text-header);">98% (Dense ADS-B)</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding-bottom: 0.2rem; font-size: 13px;">
+                  <span style="color: var(--text-muted);">Automation Bottleneck</span>
+                  <strong id="metric-setup" style="color: var(--text-header);">Fully Automated</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CASE STUDY 4: AIP CHARTS -->
+        <div class="case-study-card">
+          <div class="cs-info">
+            <span class="cs-meta">Case Study 4</span>
+            <h2>AIP Charts Directory</h2>
+            <div class="cs-description">
+              <h3>Background</h3>
+              <p>Reference approach/departure charts are published separately by each country's aviation authority. Navigating foreign portals created a significant time burden during reviews.</p>
+              
+              <h3>The Problem</h3>
+              <p>Portals used different naming, paywalls, and nested PDF indexes. Finding specific procedures was a repetitive, multilingual navigation bottleneck.</p>
+              
+              <h3>What I Built</h3>
+              <ul>
+                <li><strong>Fuzzy Chart Lookup</strong>: Fast Fuse.js indexed search to resolve paywalled/nested aeronautical chart files from various country authorities in seconds.</li>
+                <li><strong>Salutation Search Index</strong>: Compiled a catalog of time-of-day greetings, pilot handoffs, and localized salutations heard in international transmissions. Generated natural-sounding TTS audio clips using advanced neural speech models and built a fuzzy search utility to help transcribers match and recognize foreign dialects/aviation phraseology.</li>
+              </ul>
+              
+              <h3>Impact</h3>
+              <p>Reduced chart lookups from minutes to seconds, resolving the major charting friction points identified in Case Study 3.</p>
+            </div>
+          </div>
+          <div class="cs-visuals-panel">
+            <div class="live-app-card">
+              <p>Interact with the live AIP Charts Directory. Search for Canadian, Dutch, Swiss, or Irish approach plates and test the integrated PDF viewer tools.</p>
+              <button class="action-btn open-lightbox" data-url="https://ghoshaan.github.io/aip-charts/" data-title="AIP Charts Directory">
+                Launch Live App
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
-    
+
+    <!-- CV SECTION -->
     <div id="cv-section" class="content-section">
-      <div id="cv-content" class="markdown-body">Loading CV...</div>
+      <div class="cv-container">
+        <div id="cv-content" class="cv-markdown-body">
+          <div class="loader-container" style="position: static; transform: none; padding: 3rem 0;">
+            <div class="spinner"></div>
+            <div style="margin-top: 10px;">Loading CV Markdown...</div>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
+
+  <!-- LIGHTBOX MODAL CONTAINER -->
+  <div id="iframe-lightbox" class="lightbox-modal">
+    <div class="lightbox-content">
+      <div class="lightbox-header">
+        <h2 id="lightbox-title">Application Preview</h2>
+        <div class="lightbox-controls">
+          <a id="lightbox-external-link" href="#" target="_blank" class="lightbox-link">Open in new tab ↗</a>
+          <button id="lightbox-close" class="lightbox-close-btn">&times;</button>
+        </div>
+      </div>
+      <div class="iframe-container">
+        <div id="lightbox-spinner" class="loader-container">
+          <div class="spinner"></div>
+          <div style="margin-top: 10px; color: #1e293b;">Loading live application...</div>
+        </div>
+        <iframe id="lightbox-iframe" src="about:blank"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- FROYO FLOATING EXTENSION (DRAG INTERACTION) -->
+  <div id="flightOverlay" class="hidden">
+    <div id="overlayHeader">
+      <div style="display:flex; align-items:center; gap:4px;">
+        <button id="prevFlight" class="nav-btn">←</button>
+        <div style="display:flex; flex-direction:column; line-height:1;">
+          <span id="depDateHeader">DATE</span>
+          <span id="depTimeHeader">0000Z</span>
+        </div>
+        <button id="nextFlight" class="nav-btn">→</button>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <button id="toggleControlsBtn" class="nav-btn" style="font-size: 12px;">▲</button>
+        <button id="textSizeBtn" class="nav-btn" style="font-size: 12px; font-weight: bold;">A+</button>
+        <button id="closeBtn">×</button>
+      </div>
+    </div>
+
+    <div id="overlayBody">
+      <div id="controlsSection">
+        <div class="input-group">
+          <input type="text" id="flightInput" placeholder="Callsign (e.g. JBU334)" autocomplete="off">
+          <button id="pasteFlightBtn" class="small-btn">P</button>
+        </div>
+        <div id="froyo-suggestion-box" class="froyo-suggestions" style="position: absolute; left: 12px; right: 12px; background: #0f172a; border: 1px solid #333; z-index: 100000; border-radius: 6px; max-height: 150px; overflow-y: auto; display: none;"></div>
+        
+        <div class="input-group">
+          <input type="text" id="gkInput" placeholder="Global Key" disabled value="Live Sync Active">
+          <button id="pasteGKBtn" class="small-btn">P</button>
+        </div>
+        
+        <div class="input-group">
+          <input type="date" id="datePicker">
+        </div>
+        
+        <button id="fetchBtn">Fetch</button>
+      </div>
+      
+      <div id="routeOutput">
+        <div style="padding: 12px; text-align: center; color: #888; font-size: 11px;">
+          Type "jetblue" in Callsign, select suggestion, add "334", click Fetch to simulate.
+        </div>
+      </div>
+      
+      <div id="footerActions">
+        <a id="faLink" href="#" target="_blank" style="opacity:0.5;">View on FA</a>
+        <button id="clearBtn">Clear All</button>
+      </div>
+    </div>
+    
+    <div class="resizer resizer-r" id="resizer-r"></div>
+    <div class="resizer resizer-b" id="resizer-b"></div>
+    <div class="resizer resizer-rb" id="resizer-rb"></div>
+  </div>
 
   <footer>
     <p>&copy; 2026 Sampurna Ghosh.</p>
   </footer>
 
+  <script src="app.js"></script>
   <script>
-    // Navigation Logic
-    const links = document.querySelectorAll('.nav-link[data-target]');
+    // Tab switching for navbar links
+    const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('.content-section');
 
-    links.forEach(link => {
+    navLinks.forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const targetId = link.getAttribute('data-target');
         
-        // Update active link
-        links.forEach(l => l.classList.remove('active'));
+        navLinks.forEach(l => l.classList.remove('active'));
         link.classList.add('active');
 
-        // Update active section
         sections.forEach(sec => sec.classList.remove('active'));
         document.getElementById(targetId).classList.add('active');
         
-        // Smooth scroll to top
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     });
 
     // Custom marked renderer to inject structure
     const renderer = new marked.Renderer();
-    
-    // We can use the renderer to wrap elements or add classes if needed,
-    // but the CSS already targets the elements to create card-like structures.
     marked.use({ renderer });
 
-    // Fetch and parse markdown
+    // Fetch and parse CV markdown
     async function loadMarkdown(file, elementId) {
       try {
         const response = await fetch(file);
@@ -80,13 +369,12 @@
         const text = await response.text();
         document.getElementById(elementId).innerHTML = marked.parse(text);
       } catch (error) {
-        document.getElementById(elementId).innerHTML = `<div style="padding: 2rem; background: #111; border: 1px solid #333; border-radius: 12px; color: #ff6b6b;">Error loading ${file}. Note: For local development, this requires a local web server (e.g., npx serve) due to CORS restrictions on file:// protocol.</div>`;
+        document.getElementById(elementId).innerHTML = `<div style="padding: 2rem; background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: 12px; color: #ff6b6b;">Error loading ${file}. Note: For local development, this requires a local web server (e.g., npx serve) due to CORS restrictions on file:// protocol.</div>`;
       }
     }
 
-    // Initialize
+    // Initialize CV
     const version = new Date().getTime();
-    loadMarkdown(`portfolio.md?v=${version}`, 'portfolio-content');
     loadMarkdown(`CV.md?v=${version}`, 'cv-content');
   </script>
 </body>
